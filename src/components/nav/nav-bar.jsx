@@ -4,7 +4,6 @@ import { Button } from '../button/button.jsx';
 import { useContext } from 'react';
 import { AuthContext } from '../../assets/api/context/authContext.jsx';
 import { useNavigate } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
 
 export const Navbar = () => {
   const { isLogged, Logout } = useContext(AuthContext);

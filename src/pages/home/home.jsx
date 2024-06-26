@@ -6,12 +6,22 @@ import { Button } from '../../components/button/button.jsx'
 import { SearchContainer } from '../../components/card-paciente/card-paciente.style.ts'
 import { useFetchUsers } from '../../hooks/useFetchUsers.js'
 import moment from 'moment';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 
 
 export const Home = () => {
     const { users } = useFetchUsers('api/user/');
     const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+    const search = searchParams.get('search' || '');
+    
+    let filteredUsers;
+
+    if (search) {
+        filteredUsers = users.filter(user => user.name.toLowerCase().includes(search.toLowerCase()));
+    } else {
+        filteredUsers = users;
+    }
 
     return (
         <PrimaryLayout>
@@ -25,7 +35,7 @@ export const Home = () => {
                     </a>
                 </SearchContainer>
                 <HomeMain>
-                    {users.map((user) => {
+                    {filteredUsers.map((user) => {
                         return (
                             <CardPaciente
                                 name={user.name ? user.name : 'Nome não informado'}

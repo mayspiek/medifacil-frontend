@@ -13,9 +13,9 @@ export const Router = () => {
         <BrowserRouter>
             <Routes>
                 <Route exact path="/" element={<Login />} />
+                <Route exact path="/cadastro-saude" element={<CadastroSaude />} />
                 <Route element={<PrivateRoute />}>
                     <Route exact path="/home" element={<Home />} />
-                    <Route exact path="/cadastro-saude" element={<CadastroSaude />} />
                     <Route exact path="/cadastro-paciente" element={<CadastroPaciente />} />
                     <Route exact path="/cadastro-receita" element={<CadastroReceita />} />
                     <Route exact path="/receitas" element={<Receitas />} />

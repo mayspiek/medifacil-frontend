@@ -5,18 +5,20 @@ import { CardPaciente } from '../../components/card-paciente/card-paciente.jsx'
 import { Button } from '../../components/button/button.jsx'
 import { SearchContainer } from '../../components/card-paciente/card-paciente.style.ts'
 import { useFetchUsers } from '../../hooks/useFetchUsers.js'
-import { useNavigate } from 'react-router-dom';
+import moment from 'moment';
+import { useNavigate } from 'react-router-dom'
 
 
 export const Home = () => {
-    const navigate = useNavigate();
     const { users } = useFetchUsers('api/user/');
+    const navigate = useNavigate();
+
     return (
         <PrimaryLayout>
             <HomeContainer>
                 <SearchContainer>
                     <SearchInput />
-                    <a href={() => navigate('cadastro-paciente')}>
+                    <a onClick={() => navigate('/cadastro-paciente')}>
                         <Button
                             text={'Cadastrar Paciente'}
                             width={'100%'} />
@@ -26,10 +28,10 @@ export const Home = () => {
                     {users.map((user) => {
                         return (
                             <CardPaciente
-                            name={user.name ? user.name : 'Nome não informado'} 
-                            birthDate={moment(user.birthDate).format('DD/MM/YYYY')}
-                            cpf={user.cpf}
-                            key={user.id}>
+                                name={user.name ? user.name : 'Nome não informado'}
+                                birthDate={moment(user.birthDate).format('DD/MM/YYYY')}
+                                cpf={user.cpf}
+                                key={user.id}>
                             </CardPaciente>
                         )
                     })}
